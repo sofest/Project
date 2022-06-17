@@ -7,6 +7,7 @@ public class Network{
     Integer id;
     String name;
     MainSwitch mainSwitch;
+    ArrayList<Unit> unitsList = new ArrayList<>();
 
     public Network(String ip, Integer id) {
         this.ip=ip;
@@ -27,6 +28,9 @@ public class Network{
 
     public void setMainSwitch(MainSwitch mainSwitch) {
         this.mainSwitch=mainSwitch;
+    }
+    public void setUnitsList(ArrayList<Unit> unitsList) {
+        this.unitsList=unitsList;
     }
 
     public MainSwitch getMainSwitch(){return mainSwitch;}

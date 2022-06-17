@@ -10,7 +10,7 @@ public class Unit{
     public Unit(String ip, Integer id){
         this.ip=ip;
         this.id=id;
-        this.name="Router";
+        this.name="Unit";
     }
 
     public Integer getId() {

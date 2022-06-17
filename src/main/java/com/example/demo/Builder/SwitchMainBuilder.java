@@ -9,25 +9,20 @@ import java.util.ArrayList;
 public class SwitchMainBuilder {
     UnitBuilder unitBuilder = new UnitBuilder();
     SwitchBuilder switchBuilder = new SwitchBuilder();
-    public MainSwitch createMainSwitch(Integer numUnits, String networkIP){
+    public MainSwitch createMainSwitch(Integer numUnits, Integer ipRouter){
         MainSwitch mainSwitch = new MainSwitch(1);
         if (numUnits <=29 ) {
-            for (int i = 0; i < numUnits; i++) {
-                mainSwitch.addUnit(unitBuilder.createUnit(networkIP, i));
+                mainSwitch.setUnitList(unitBuilder.createListUnits(numUnits, ipRouter, 0));
             }
-        }
         else{
             int numSwitches = numUnits/29;
             for (int j=0; j<numSwitches; j++) {
                 Switches newSwitch = switchBuilder.createSwitches(j+2);
-                for(int k=0;k<29;k++) {
-                    newSwitch.addUnit(unitBuilder.createUnit(networkIP,k));
-                }
+                newSwitch.setUnitsList(unitBuilder.createListUnits(29, ipRouter, j));
                 mainSwitch.addSwitch(newSwitch);
             }
-            for(int k=0;k<(numUnits-numSwitches*29);k++) {
-                mainSwitch.addUnit(unitBuilder.createUnit(networkIP,k));
-            }
+                mainSwitch.setUnitList(unitBuilder.createListUnits(numUnits-numSwitches*29,ipRouter, numSwitches));
+
 
         }
         return mainSwitch;

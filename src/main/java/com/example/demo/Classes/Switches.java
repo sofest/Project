@@ -20,8 +20,8 @@ public class Switches {
         return name;
     }
 
-    public void addUnit(Unit unit) {
-        unitsList.add(unit);
+    public void setUnitsList(ArrayList<Unit> unitsList) {
+        this.unitsList=unitsList;
     }
 
     public ArrayList<Unit> getUnitsList(){return unitsList;}

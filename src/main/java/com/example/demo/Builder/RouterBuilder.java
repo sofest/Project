@@ -18,7 +18,7 @@ public ArrayList<Routers> createListRouters(Integer numRouters, String[] arrayMa
         int numMask = Integer.valueOf(arrayMasks[ipRouter - 1]);
         Routers router = new Routers("10.0." +ipRouter + "."+ numRouters, ipRouter, numMask);
         router.setNetworkList(networkBuilder.createNetworkList(ipRouter, numMask));
-        router.setNetworkRouterIP(networkBuilder.getNetworksIP());
+//        router.setNetworkRouterIP(networkBuilder.getNetworksIP());
         routersList.add(router);
     }
     return routersList;

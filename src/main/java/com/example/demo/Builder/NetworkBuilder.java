@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class NetworkBuilder {
-    ArrayList<Network> networkList = new ArrayList<>();
     SwitchMainBuilder switchMainBuilder = new SwitchMainBuilder();
+    UnitBuilder unitBuilder = new UnitBuilder();
+
     public ArrayList<Network> createNetworkList(Integer ipRouter, Integer numMask){
+        ArrayList<Network> networkList = new ArrayList<>();
         int i;
         switch(numMask){
             case(24): i=1; break;
@@ -24,8 +26,8 @@ public class NetworkBuilder {
         int k=0;
         for (int j=0; j<i; j++){
             Network network = new Network("196.168."+ ipRouter+"."+ k, i);
-            network.setMainSwitch(switchMainBuilder.createMainSwitch(getNumUnits(numMask),network.getIp()));
-//            network.setUnitsList(unitBuilder.createListUnits(getMaxNumUnits(numMask), ipRouter,k));
+            network.setMainSwitch(switchMainBuilder.createMainSwitch(getNumUnits(numMask),ipRouter));
+//            network.setUnitsList(unitBuilder.createListUnits(getNumUnits(numMask), ipRouter));
             networkList.add(network);
             k+=256/i;
         }
@@ -34,17 +36,10 @@ public class NetworkBuilder {
     public Integer getNumUnits(Integer numMask){
         int maxNumUnits = (int) Math.pow(2, 32-numMask);
         int numUnits = ThreadLocalRandom.current().nextInt(1,maxNumUnits);
-        return maxNumUnits;
+        return numUnits;
     }
 //    public Integer getNumSwitches(Integer numUnits){
 //        Integer numSwitches = numUnits/29+1;
 //        return numSwitches;
 //    }
-    public ArrayList<String> getNetworksIP(){
-        ArrayList<String> networkIP = new ArrayList<>();
-        for(int j=0;j<networkList.size();j++){
-           networkIP.add(networkList.get(j).getIp());
-        }
-        return networkIP;
-    }
 }

@@ -28,8 +28,8 @@ public class MainSwitch {
         return switchesList;
     }
 
-    public void addUnit(Unit unit) {
-        unitsList.add(unit);
+    public void setUnitList(ArrayList<Unit> unitsList) {
+        this.unitsList=unitsList;
     }
 
     public ArrayList<Unit> getUnitsList(){return unitsList;}

@@ -69,6 +69,10 @@ ArrayList<Routers> array = new ArrayList();
                     lvl2Item.getChildren().add(lvl3Item);
                     TreeItem<String> lvl4Item = new TreeItem<>(network.getMainSwitch().getName()+" "+ network.getMainSwitch().getId());
                     lvl3Item.getChildren().add(lvl4Item);
+                    for(Unit unit: network.getMainSwitch().getUnitsList()){
+                        TreeItem<String> lvl0Item = new TreeItem<>(unit.getName()+" "+unit.getIp());
+                        lvl4Item.getChildren().add(lvl0Item);
+                    }
                     for(Switches switches: network.getMainSwitch().getSwitchesList()){
                         TreeItem<String> lvl5Item = new TreeItem<>(switches.getName()+" "+switches.getId());
                         lvl4Item.getChildren().add(lvl5Item);
