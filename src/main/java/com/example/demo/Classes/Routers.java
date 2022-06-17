@@ -8,7 +8,7 @@ public class Routers {
     Integer mask;
     String name;
     ArrayList<Network> networkList = new ArrayList<Network>();
-    ArrayList<String> networkIP = new ArrayList<>();
+//    ArrayList<String> networkIP = new ArrayList<>();
 
     public Routers(String ip, Integer id, Integer mask) {
         this.ip=ip;
@@ -41,21 +41,21 @@ public class Routers {
             return networkList;
         }
 
-    public void setNetworkRouterIP(ArrayList <String> networkIP) {
-        ArrayList<String> networkRoputerIP = new ArrayList<>();
-        int k=1;
-        for(int j=0;j<networkList.size();j++){
-            int index = networkList.get(j).getIp().lastIndexOf(".");
-            String newIP = networkList.get(j).getIp().substring(0,index);
-            newIP=newIP+"."+k;
-            networkRoputerIP.add(newIP);
-            k=256/networkList.size()+1;
-        }
-        this.networkIP = networkRoputerIP;
-    }
-    public ArrayList<String> getNetworkRouterIP () {
-        return networkIP;
-    }
+//    public void setNetworkRouterIP(ArrayList <String> networkIP) {
+//        ArrayList<String> networkRoputerIP = new ArrayList<>();
+//        int k=1;
+//        for(int j=0;j<networkList.size();j++){
+//            int index = networkList.get(j).getIp().lastIndexOf(".");
+//            String newIP = networkList.get(j).getIp().substring(0,index);
+//            newIP=newIP+"."+k;
+//            networkRoputerIP.add(newIP);
+//            k=256/networkList.size()+1;
+//        }
+//        this.networkIP = networkRoputerIP;
+//    }
+//    public ArrayList<String> getNetworkRouterIP () {
+//        return networkIP;
+//    }
 
 }
 

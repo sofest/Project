@@ -5,7 +5,7 @@ import com.example.demo.Classes.Routers;
 
 import java.util.ArrayList;
 
-public class RouterMain {
+public class RouterMainBuilder {
     RouterBuilder routerBuilder = new RouterBuilder();
 
 public MainRouter createMainRouter(Integer numRouters,String[] arrayMasks){

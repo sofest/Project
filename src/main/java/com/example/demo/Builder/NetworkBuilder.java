@@ -25,7 +25,7 @@ public class NetworkBuilder {
         }
         int k=0;
         for (int j=0; j<i; j++){
-            Network network = new Network("196.168."+ ipRouter+"."+ k, i);
+            Network network = new Network("196.168."+ ipRouter+"."+ k, ThreadLocalRandom.current().nextInt(1000,100000));
             network.setMainSwitch(switchMainBuilder.createMainSwitch(getNumUnits(numMask),ipRouter));
 //            network.setUnitsList(unitBuilder.createListUnits(getNumUnits(numMask), ipRouter));
             networkList.add(network);
