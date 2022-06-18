@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class Network{
     String ip;
-    Integer id;
     String name;
-    MainSwitch mainSwitch;
+    Routers router;
+    Switches mainSwitch;
     ArrayList<Unit> unitsList = new ArrayList<>();
 
-    public Network(String ip, Integer id) {
+    public Network(String ip, Routers router) {
         this.ip=ip;
-        this.id=id;
+        this.router=router;
         this.name="Network";
     }
     public String getIp() {
@@ -22,16 +22,21 @@ public class Network{
         return name;
     }
 
-    public Integer getId() {
-        return id;
+
+    public Routers getRouter() {
+        return router;
     }
 
-    public void setMainSwitch(MainSwitch mainSwitch) {
+    public void setMainSwitch(Switches mainSwitch) {
         this.mainSwitch=mainSwitch;
     }
     public void setUnitsList(ArrayList<Unit> unitsList) {
         this.unitsList=unitsList;
     }
 
-    public MainSwitch getMainSwitch(){return mainSwitch;}
+    public Switches getMainSwitch(){return mainSwitch;}
+    @Override
+    public String toString() {
+        return "Network " + ip;
+    }
 }

@@ -10,6 +10,6 @@
       <TreeView fx:id="tree" layoutX="14.0" layoutY="14.0" prefHeight="372.0" prefWidth="362.0" />
       <ComboBox fx:id="chooseUnit1" layoutX="394.0" layoutY="28.0" prefHeight="26.0" prefWidth="188.0" />
       <ComboBox fx:id="chooseUnit2" layoutX="394.0" layoutY="65.0" prefHeight="26.0" prefWidth="188.0" />
-      <Button fx:id="genWayButton" layoutX="394.0" layoutY="105.0" mnemonicParsing="false" onAction="#genWayy" prefHeight="34.0" prefWidth="188.0" text="Сгенерировать путь" />
+      <Button fx:id="genWayButton" layoutX="394.0" layoutY="105.0" mnemonicParsing="false" onAction="#generateWay" prefHeight="34.0" prefWidth="188.0" text="Сгенерировать путь" />
    </children>
 </AnchorPane>

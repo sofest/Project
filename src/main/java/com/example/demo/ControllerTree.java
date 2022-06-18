@@ -10,9 +10,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class ControllerTree {
+    public static Unit choosedUnit1;
+    public static Unit choosedUnit2;
+    public static Unit getChoosedUnit1(){return choosedUnit1;}
+    public static Unit getChoosedUnit2(){return choosedUnit2;}
+
 
     @FXML
     private ResourceBundle resources;
@@ -21,10 +30,10 @@ public class ControllerTree {
     private URL location;
 
     @FXML
-    private ComboBox<String> chooseUnit1;
+    private ComboBox<Unit> chooseUnit1;
 
     @FXML
-    private ComboBox<String> chooseUnit2;
+    private ComboBox<Unit> chooseUnit2;
 
     @FXML
     private Button genWayButton;
@@ -34,7 +43,7 @@ public class ControllerTree {
 
     @FXML
     void initialize() {
-        ArrayList<String> unitsList = new ArrayList<>();
+        ArrayList<Unit> unitsList = new ArrayList<>();
         RouterMainBuilder routerMainBuilder = new RouterMainBuilder();
         try {
             MainRouter mainRouter = routerMainBuilder.createMainRouter(Integer.valueOf(Controller.getRouterNum()), Controller.getArrayMasks());
@@ -50,44 +59,60 @@ public class ControllerTree {
                     lvl2Item.getChildren().add(lvl3Item);
                     TreeItem<String> lvl4Item = new TreeItem<>(network.getMainSwitch().getName() + " " + network.getMainSwitch().getId());
                     lvl3Item.getChildren().add(lvl4Item);
-                    int i=1;
+                    int i = 1;
                     for (Unit unit : network.getMainSwitch().getUnitsList()) {
-                        TreeItem<String> lvl0Item = new TreeItem<>(unit.getName()+ i+ " " + unit.getId() + " (" + unit.getIp() + ")");
-                        unitsList.add((unit.getName()+ i+ " " + unit.getId() + " (" + unit.getIp() + ")"));
+                        TreeItem<String> lvl0Item = new TreeItem<>(unit.getName() + i + " " + unit.getId() + " (" + unit.getIp() + ")");
+                        unitsList.add(unit);
                         lvl4Item.getChildren().add(lvl0Item);
-                        i+=1;
+                        i += 1;
                     }
                     for (Switches switches : network.getMainSwitch().getSwitchesList()) {
                         TreeItem<String> lvl5Item = new TreeItem<>(switches.getName() + " " + switches.getId());
                         lvl4Item.getChildren().add(lvl5Item);
-                        int j=1;
+                        int j = 1;
                         for (Unit unit : switches.getUnitsList()) {
-                            TreeItem<String> lvl6Item = new TreeItem<>(unit.getName()+j+ " " + unit.getId() + " (" + unit.getIp() + ")");
-                            unitsList.add(unit.getName()+ i+ " " + unit.getId() + " (" + unit.getIp() + ")");
+                            TreeItem<String> lvl6Item = new TreeItem<>(unit.getName() + j + " " + unit.getId() + " (" + unit.getIp() + ")");
+                            unitsList.add(unit);
                             lvl5Item.getChildren().add(lvl6Item);
-                            j+=1;
+                            j += 1;
                         }
                     }
                 }
             }
             tree.setRoot(lvl1Item);
-genCombobox(unitsList);
-        }
+            genCombobox(unitsList);
 
-        catch (Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-void genCombobox(ArrayList<String> unitsList){
-    ObservableList<String> langs = FXCollections.observableArrayList(unitsList);
-    chooseUnit1.setItems(langs);
-    chooseUnit1.setValue(langs.get(0));
-    chooseUnit2.setItems(langs);
-    chooseUnit2.setValue(langs.get(0));
+
+    void genCombobox(ArrayList<Unit> unitsList) {
+        ObservableList<Unit> langs = FXCollections.observableArrayList(unitsList);
+        chooseUnit1.setItems(langs);
+        chooseUnit1.setValue(langs.get(0));
+        chooseUnit2.setItems(langs);
+        chooseUnit2.setValue(langs.get(0));
+    }
+    @FXML
+    void generateWay(ActionEvent event) {
+        choosedUnit1=chooseUnit1.getValue();
+        choosedUnit2=chooseUnit2.getValue();
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Controller.class.getResource("view3.fxml"));
+            Scene Scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setScene(Scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
-void genWayy(ActionEvent event){
-        String unit1 = chooseUnit1.getValue();
-        String unit2 = chooseUnit2.getValue();}
-}
+
+
 
 

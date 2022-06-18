@@ -40,7 +40,10 @@ public class Routers {
         public ArrayList<Network> getNetworkList () {
             return networkList;
         }
-
+    @Override
+    public String toString() {
+        return "Router " + id;
+    }
 //    public void setNetworkRouterIP(ArrayList <String> networkIP) {
 //        ArrayList<String> networkRoputerIP = new ArrayList<>();
 //        int k=1;

@@ -6,10 +6,12 @@ public class Unit{
     String ip;
     Integer id;
     String name;
+    Switches switches;
 
-    public Unit(String ip, Integer id){
+    public Unit(String ip, Integer id, Switches switches){
         this.ip=ip;
         this.id=id;
+        this.switches=switches;
         this.name="Unit";
     }
 
@@ -23,5 +25,11 @@ public class Unit{
 
     public String getIp() {
         return ip;
+    }
+    public Switches getSwitches(){return switches;}
+
+    @Override
+    public String toString() {
+        return "Unit " + id;
     }
 }

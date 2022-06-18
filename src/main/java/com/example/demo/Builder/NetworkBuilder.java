@@ -1,6 +1,7 @@
 package com.example.demo.Builder;
 
 import com.example.demo.Classes.Network;
+import com.example.demo.Classes.Routers;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -8,9 +9,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class NetworkBuilder {
     SwitchMainBuilder switchMainBuilder = new SwitchMainBuilder();
-    UnitBuilder unitBuilder = new UnitBuilder();
 
-    public ArrayList<Network> createNetworkList(Integer ipRouter, Integer numMask){
+    public ArrayList<Network> createNetworkList(Integer ipRouter, Integer numMask, Routers router){
         ArrayList<Network> networkList = new ArrayList<>();
         int i;
         switch(numMask){
@@ -25,9 +25,8 @@ public class NetworkBuilder {
         }
         int k=0;
         for (int j=0; j<i; j++){
-            Network network = new Network("196.168."+ ipRouter+"."+ k, ThreadLocalRandom.current().nextInt(1000,100000));
-            network.setMainSwitch(switchMainBuilder.createMainSwitch(getNumUnits(numMask),ipRouter));
-//            network.setUnitsList(unitBuilder.createListUnits(getNumUnits(numMask), ipRouter));
+            Network network = new Network("196.168."+ ipRouter+"."+ k, router);
+            network.setMainSwitch(switchMainBuilder.createMainSwitch(getNumUnits(numMask),ipRouter,network));
             networkList.add(network);
             k+=256/i;
         }
@@ -38,8 +37,4 @@ public class NetworkBuilder {
         int numUnits = ThreadLocalRandom.current().nextInt(1,maxNumUnits);
         return numUnits;
     }
-//    public Integer getNumSwitches(Integer numUnits){
-//        Integer numSwitches = numUnits/29+1;
-//        return numSwitches;
-//    }
 }
