@@ -9,6 +9,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class NetworkBuilder {
     SwitchMainBuilder switchMainBuilder = new SwitchMainBuilder();
+    UnitBuilder unitBuilder = new UnitBuilder();
 
     public ArrayList<Network> createNetworkList(Integer ipRouter, Integer numMask, Routers router){
         ArrayList<Network> networkList = new ArrayList<>();
@@ -25,8 +26,10 @@ public class NetworkBuilder {
         }
         int k=0;
         for (int j=0; j<i; j++){
+            int numUnits = getNumUnits(numMask);
             Network network = new Network("196.168."+ ipRouter+"."+ k, router);
-            network.setMainSwitch(switchMainBuilder.createMainSwitch(getNumUnits(numMask),ipRouter,network));
+            network.setUnitsList(unitBuilder.createListUnits(numUnits,ipRouter,k));
+            network.setMainSwitch(switchMainBuilder.createMainSwitch(network.getUnitsList().size(),network));
             networkList.add(network);
             k+=256/i;
         }

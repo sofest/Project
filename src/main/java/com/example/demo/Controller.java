@@ -57,6 +57,7 @@ ArrayList<Routers> array = new ArrayList();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (Exception e) {
+            error(e);
             e.printStackTrace();
         }
     }

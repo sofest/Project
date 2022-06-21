@@ -25,8 +25,11 @@ public class Switches {
         return name;
     }
 
-    public void setUnitsList(ArrayList<Unit> unitsList) {
+    public void setUnitsList(ArrayList<Unit> unitsList, Switches switches) {
         this.unitsList=unitsList;
+        for(Unit unit: unitsList){
+            unit.setSwitches(switches);
+        }
     }
 
     public Network getNetwork() {

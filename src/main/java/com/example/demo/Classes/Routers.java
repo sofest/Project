@@ -3,20 +3,23 @@ package com.example.demo.Classes;
 import java.util.ArrayList;
 
 public class Routers {
-    String ip;
+    ArrayList<String> ip = new ArrayList<>();
     Integer id;
     Integer mask;
     String name;
+    MainRouter mainRouter;
     ArrayList<Network> networkList = new ArrayList<Network>();
 //    ArrayList<String> networkIP = new ArrayList<>();
 
-    public Routers(String ip, Integer id, Integer mask) {
-        this.ip=ip;
+    public Routers(Integer id, Integer mask) {
         this.id = id;
         this.mask = mask;
         this.name = "Router";
     }
 
+    public void setIp(String ips) {
+        ip.add(ips);
+        }
 
     public String getName() {
         return name;
@@ -30,7 +33,7 @@ public class Routers {
         return mask;
     }
 
-    public String getIp() {
+    public ArrayList<String> getIp() {
         return ip;
     }
 
@@ -44,21 +47,13 @@ public class Routers {
     public String toString() {
         return "Router " + id;
     }
-//    public void setNetworkRouterIP(ArrayList <String> networkIP) {
-//        ArrayList<String> networkRoputerIP = new ArrayList<>();
-//        int k=1;
-//        for(int j=0;j<networkList.size();j++){
-//            int index = networkList.get(j).getIp().lastIndexOf(".");
-//            String newIP = networkList.get(j).getIp().substring(0,index);
-//            newIP=newIP+"."+k;
-//            networkRoputerIP.add(newIP);
-//            k=256/networkList.size()+1;
-//        }
-//        this.networkIP = networkRoputerIP;
-//    }
-//    public ArrayList<String> getNetworkRouterIP () {
-//        return networkIP;
-//    }
 
+    public MainRouter getMainRouter() {
+        return mainRouter;
+    }
+
+    public void setMainRouter(MainRouter mainRouter) {
+        this.mainRouter = mainRouter;
+    }
 }
 

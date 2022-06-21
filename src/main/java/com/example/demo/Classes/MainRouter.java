@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class MainRouter {
     Integer id;
+    ArrayList<String> ip=new ArrayList<>();
     Integer mask;
     String name;
     ArrayList<Routers> routers = new ArrayList<Routers>();
@@ -24,6 +25,14 @@ public class MainRouter {
         return mask;
     }
 
+    public void setIp(String ips) {
+        ip.add(ips);
+    }
+
+    public ArrayList<String> getIp() {
+        return ip;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -32,7 +41,15 @@ public class MainRouter {
         return name;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
+    }
+    @Override
+    public String toString() {
+        return "Main Router " +id+" ("+ ip+")";
     }
 }

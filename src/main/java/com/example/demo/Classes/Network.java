@@ -33,6 +33,7 @@ public class Network{
     public void setUnitsList(ArrayList<Unit> unitsList) {
         this.unitsList=unitsList;
     }
+    public ArrayList<Unit> getUnitsList(){return unitsList;}
 
     public Switches getMainSwitch(){return mainSwitch;}
     @Override

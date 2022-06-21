@@ -6,13 +6,26 @@ public class Unit{
     String ip;
     Integer id;
     String name;
+    Boolean status;
     Switches switches;
 
-    public Unit(String ip, Integer id, Switches switches){
+    public Unit(String ip, Integer id){
         this.ip=ip;
         this.id=id;
-        this.switches=switches;
-        this.name="Unit";
+        this.status=Boolean.TRUE;
+        this.name="Computer";
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    public void changeName(String name) {
+        this.name=name;
     }
 
     public Integer getId() {
@@ -26,10 +39,19 @@ public class Unit{
     public String getIp() {
         return ip;
     }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
     public Switches getSwitches(){return switches;}
 
     @Override
     public String toString() {
-        return "Unit " + id;
+        return "Unit " +id+" ("+ ip+")";
+    }
+
+    public void setSwitches(Switches switches) {
+        this.switches=switches;
     }
 }
